@@ -1,0 +1,46 @@
+{
+  "https://python.langchain.com/docs/": {
+    "hash": "9480a61ba13f9e15b1131f7251f15cbe503cdbbb76771242c66402a5552937a2",
+    "last_checked": "2026-04-09T23:53:51.232911+00:00"
+  },
+  "https://langchain-ai.github.io/langgraph/": {
+    "hash": "bda8a42905e872d96a55eefc45b2bb7d375717012c19fb8f277ff50f5fe921fa",
+    "last_checked": "2026-04-10T00:10:09.946949+00:00"
+  },
+  "https://python.langchain.com/docs/introduction/": {
+    "hash": "9480a61ba13f9e15b1131f7251f15cbe503cdbbb76771242c66402a5552937a2",
+    "last_checked": "2026-04-13T15:04:47.706620+00:00"
+  },
+  "https://ai.google.dev/gemini-api/docs": {
+    "hash": "64ec29582b9ddf9c13639cfe08e7531034359bc40678e15757a232bc0ebb658a",
+    "last_checked": "2026-04-17T05:28:48.854693+00:00"
+  },
+  "https://googleapis.github.io/python-genai/": {
+    "hash": "362e7a8af182f4c329955a3d3611c3f4a22f3215a866ac1f72961f780a6d9c63",
+    "last_checked": "2026-04-10T00:10:24.237870+00:00"
+  },
+  "https://deepeval.com/docs/getting-started": {
+    "hash": "e86481eb1e3e2b3ba07292a89ea11c881a0556c50f4fd0be2a467a5cdef887ad",
+    "last_checked": "2026-04-10T00:10:38.530931+00:00"
+  },
+  "https://docs.smith.langchain.com/": {
+    "hash": "f16a8e8d106d659ac3f8ec3650ca86be83c1f2995453c7d787ec949070f54d09",
+    "last_checked": "2026-04-10T00:10:38.530931+00:00"
+  },
+  "https://docs.anthropic.com/en/docs/overview": {
+    "hash": "849b1c432b00a2555b84ba0e5ff6ce6b3ee8cf898c47b99b4ac702ecb2e8f7a5",
+    "last_checked": "2026-04-13T15:04:47.706620+00:00"
+  },
+  "https://docs.anthropic.com/en/docs/welcome": {
+    "hash": "849b1c432b00a2555b84ba0e5ff6ce6b3ee8cf898c47b99b4ac702ecb2e8f7a5",
+    "last_checked": "2026-04-17T05:28:48.854693+00:00"
+  },
+  "https://huggingface.co/docs/transformers/index": {
+    "hash": "73f31dcd1f17f7a018f952049de1019d916b245854dba96fbcb3675eecd82603",
+    "last_checked": "2026-04-17T05:28:58.452369+00:00"
+  },
+  "https://docs.ray.io/en/latest/index.html": {
+    "hash": "bd617d5aa824d09156cf7f5a6d446cdfc8279f8bfcfeccf64f935a529904bf96",
+    "last_checked": "2026-04-17T05:28:58.452369+00:00"
+  }
+}

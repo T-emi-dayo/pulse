@@ -1,5 +1,7 @@
 # Agentic System Architecture Template
 
+> Generic reference template. Pulse itself does not follow it exactly: it is a LangGraph pipeline run by `src/runner.py`, not a FastAPI service. See [README.md](../README.md) and [CLAUDE.md](../CLAUDE.md) for the actual architecture.
+
 ## Overview
 
 This document provides a reusable architectural template for building agentic AI systems. It establishes patterns for organizing multi-agent architectures, service integrations, and scalable AI applications that can be adapted across different domains.

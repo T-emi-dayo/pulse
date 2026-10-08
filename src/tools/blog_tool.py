@@ -1,7 +1,7 @@
 import feedparser
 from datetime import datetime, timezone, timedelta
 
-from src.types import RawItem
+from src.schemas.RawItem import RawItem
 
 # Fallback feeds used when a topic profile provides no blog URLs.
 # Primary source is always topic_profile.sources[].urls.

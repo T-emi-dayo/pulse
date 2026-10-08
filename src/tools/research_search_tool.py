@@ -2,7 +2,7 @@ import arxiv
 import feedparser
 from datetime import datetime, timezone, timedelta
 
-from src.types import RawItem
+from src.schemas.RawItem import RawItem
 
 
 HF_RSS_URL = "https://huggingface.co/papers.rss"

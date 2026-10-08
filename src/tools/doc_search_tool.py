@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime, timezone
 from pathlib import Path
 
-from src.types import RawItem
+from src.schemas.RawItem import RawItem
 
 
 HASH_STORE_PATH = Path("pulse/state/docs_hashes.json")

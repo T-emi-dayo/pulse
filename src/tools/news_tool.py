@@ -2,7 +2,7 @@ from datetime import datetime, timezone, timedelta
 
 from ddgs import DDGS
 
-from src.types import RawItem
+from src.schemas.RawItem import RawItem
 
 CUTOFF_HOURS = 24
 

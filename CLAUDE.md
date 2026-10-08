@@ -4,21 +4,24 @@ Pulse is **Module 1** of a 3-module personal AI system built by an AI/ML Enginee
 Its purpose: deliver a daily digest of what matters across research, tooling, and the broader AI ecosystem — fully automated, no manual curation needed at runtime.
 
 **Module Roadmap (for orientation only — focus is Module 1):**
-- Module 1 → Pulse (this project, active build)
+- Module 1 → Pulse (this project)
 - Module 2 → Second Brain (RAG over personal notes/learnings)
 - Module 3 → Workflow Automation Agent (depends on Module 2 memory layer)
+
+See [README.md](README.md) for setup, running and deployment.
 
 ---
 
 ## What Pulse Does
 
-Pulse runs as a LangGraph agentic pipeline. Given a set of **topic profiles**, it:
-1. Ingests data from monitored and searched sources (last 24 hours, capped per source type)
-2. Deduplicates all ingested items in a single pass
-3. Summarizes by source type
-4. Merges into a final structured digest
+A LangGraph pipeline. Given a set of **topic profiles** (`src/config/profiles.py`), it:
+1. Ingests data from five source types (last 24 hours, capped per source type)
+2. Deduplicates all ingested items in a single pass (by URL)
+3. Summarizes by source type (Gemini)
+4. Merges into a markdown digest
+5. Emails the digest via Resend (`src/runner.py`)
 
-It is designed to run once daily. There is **no retry logic** — pull limit is the quality gate.
+It runs once daily as a Render cron job. There is **no retry logic** — pull limit is the quality gate.
 
 ---
 
@@ -26,288 +29,195 @@ It is designed to run once daily. There is **no retry logic** — pull limit is 
 
 | Layer | Choice |
 |---|---|
-| Language | Python |
+| Language | Python 3.13+, managed with `uv` |
 | Agent Framework | LangGraph |
-| LLM Provider | Google Gemini via `google.genai` + `langchain_google_genai` |
+| LLM Provider | Google Gemini via `google.genai` + `langchain_google_genai` (default `gemini-2.5-flash`) |
 | HTTP Client | `httpx` |
 | Feed Parsing | `feedparser` |
-| HTML Parsing | `BeautifulSoup` |
+| HTML Parsing | `BeautifulSoup` (`trafilatura` is also a dependency) |
 | Content Hashing | `hashlib` (SHA-256) |
-| Research Papers | `arxiv` lib + HuggingFace RSS |
-| News | NewsCatcherAPI |
+| Research Papers | `arxiv` lib + HuggingFace papers RSS |
+| News | DuckDuckGo news via `ddgs` (no API key) |
+| Email | Resend |
 
 ---
 
 ## Project Structure
 
 ```
-pulse/
-├── CLAUDE.md
-├── pulse/
-│   ├── __init__.py
-│   ├── types.py            # Shared types — single source of truth (RawItem lives here)
-│   ├── config.py           # Constants: TOP_N per source, time windows, API keys
-│   ├── state.py            # AgentState definition
-│   ├── graph.py            # LangGraph graph assembly
-│   ├── tools/
-│   │   ├── __init__.py
-│   │   ├── github_release.py   # GitHub .atom RSS via feedparser
-│   │   ├── docs.py             # BeautifulSoup + httpx + SHA-256 hashing
-│   │   ├── research_paper.py   # arxiv lib + HuggingFace RSS
-│   │   ├── news.py             # NewsCatcherAPI
-│   │   └── blog.py             # feedparser + ranked RSS
-│   ├── nodes/
-│   │   ├── __init__.py
-│   │   ├── ingestion/
-│   │   │   ├── github_release_node.py
-│   │   │   ├── docs_node.py
-│   │   │   ├── research_paper_node.py
-│   │   │   ├── news_node.py
-│   │   │   └── blog_node.py
-│   │   ├── dedup_node.py
-│   │   ├── summarize/
-│   │   │   ├── research_papers_node.py
-│   │   │   ├── github_releases_node.py
-│   │   │   ├── docs_node.py
-│   │   │   ├── news_node.py
-│   │   │   └── blogs_node.py
-│   │   └── merge_digest_node.py
-│   └── state/
-│       ├── github_readme_hashes.json   # Persisted SHA-256 hashes for README change detection
-│       └── docs_hashes.json            # Persisted SHA-256 hashes for docs change detection
+Pulse/
+├── CLAUDE.md, README.md
+├── pyproject.toml, uv.lock
+├── render.yaml                       # Cron: 04:00 UTC, `uv run python -m src.runner`
+├── docs/                             # RULE.md (coding rules), AGENTIC_SYSTEM_TEMPLATE.md (generic template)
+├── pulse/state/
+│   ├── github_readme_hashes.json     # SHA-256 hashes for README change detection
+│   └── docs_hashes.json              # SHA-256 hashes for docs change detection
+├── tests/                            # unit/, integration/, e2e/ (empty) + ad-hoc tool scripts
+└── src/
+    ├── runner.py                     # Entry point: invoke graph, email digest
+    ├── graph.py                      # Graph assembly, exports `pulse_graph`
+    ├── agents/
+    │   ├── base_node.py              # BaseNode (holds AIService)
+    │   ├── ingestion_nodes.py        # IngestionNode: one method per source type
+    │   ├── dedup_node.py
+    │   ├── summarization_node.py     # SummarizationNode: one method per source type
+    │   └── merge_digest_node.py
+    ├── tools/                        # github_search_tool, doc_search_tool, research_search_tool,
+    │                                 # news_tool, blog_tool
+    ├── schemas/
+    │   ├── RawItem.py                # RawItem (tool output)
+    │   ├── state.py                  # AgentState, IngestedItem, SummaryItem
+    │   └── topic_profile.py          # TopicProfile, SourceConfig
+    ├── config/
+    │   ├── settings.py               # Settings (env), TOP_N_BY_SOURCE, LOOKBACK_HOURS
+    │   └── profiles.py               # TOPIC_PROFILES
+    ├── prompts/templates.py          # Summarization prompts
+    └── services/                     # AIService.py (Gemini), email_service.py (Resend)
 ```
+
+`src/main.py`, root `main.py`, `Dockerfile`, `docker-compose.yml` and `src/services/base_service.py` are leftovers from an earlier FastAPI scaffold. `src/main.py` imports a non-existent `src.api`. Do not build on them.
 
 ---
 
-## Core Types (`pulse/types.py`)
+## Core Types
 
-**This is the single source of truth. Do not redefine `RawItem` elsewhere.**
+**Tools return `RawItem`; nodes convert to `IngestedItem`.** Each is defined once; import, do not redefine.
 
+`src/schemas/RawItem.py` — `TypedDict` returned by every tool:
 ```python
-from typing import Literal
-from dataclasses import dataclass, field
-from datetime import datetime
-
-SourceType = Literal["github_release", "docs", "research_paper", "news", "blog"]
-
-@dataclass
-class RawItem:
-    id: str                         # Unique identifier (URL or generated hash)
-    source_type: SourceType
+class RawItem(TypedDict):
     title: str
     url: str
-    content: str                    # Raw text / summary / changelog
-    published_at: datetime
-    topic: str                      # Which topic profile this came from
-    metadata: dict = field(default_factory=dict)  # Source-specific extras
+    source: str | None
+    source_type: str        # "github_release" | "docs" | "research_paper" | "news" | "blog"
+    excerpt: str
+    published_at: str       # ISO 8601, UTC
+    content_hash: str | None
+    full_content: str | None
 ```
 
----
-
-## AgentState (`pulse/state.py`)
-
+`src/schemas/state.py` — Pydantic models:
 ```python
-from typing import Annotated
-from langgraph.graph import MessagesState
-import operator
+class IngestedItem(BaseModel):
+    title: str; url: str; source_type: str
+    source_name: str                    # e.g. domain, repo owner, "arxiv"
+    source_rank: Optional[int] = None   # news/blog only
+    topic: str; excerpt: str; published_at: str
 
-class AgentState(MessagesState):
-    topic_profiles: list[dict]                          # Input: list of TopicProfile dicts
-    raw_items: Annotated[list[RawItem], operator.add]   # Fan-in from all ingestion nodes
-    deduped_items: list[RawItem]                        # Output of dedup node
-    summaries: Annotated[list[dict], operator.add]      # Fan-in from all summarize nodes
-    final_digest: str                                   # Output of merge_digest node
-    errors: Annotated[list[str], operator.add]          # Accumulated errors, non-fatal
+class SummaryItem(BaseModel):
+    source_type: str; summary_text: str; item_count: int
+
+class AgentState(BaseModel):
+    topic_profiles: list[TopicProfile]
+    raw_items: Annotated[list[IngestedItem], operator.add]   # fan-in from ingestion
+    deduped_items: list[IngestedItem]
+    summaries: Annotated[list[SummaryItem], operator.add]    # fan-in from summarize
+    final_digest: str
+    errors: Annotated[list[str], operator.add]               # non-fatal
 ```
 
----
-
-## Topic Profile Schema
-
+`src/schemas/topic_profile.py`:
 ```python
-{
-    "topic": str,           # e.g. "LLM Agents"
-    "priority": int,        # 1 (highest) to 3 (lowest)
-    "sources": [
-        {
-            "source_type": SourceType,
-            "keywords": list[str],
-            "urls": list[str],          # For docs/blogs
-            "repos": list[str],         # For github_release — "owner/repo"
-            "watchlist": list[str],     # For research_paper — arXiv categories or author IDs
-        }
-    ]
-}
+class SourceConfig(TypedDict):
+    source_type: str
+    keywords: list[str]     # news/blog/research queries
+    urls: list[str]         # docs pages, blog feeds
+    repos: list[str]        # github_release: "owner/repo"
+    watchlist: list[str]    # research_paper: arXiv categories
+class TopicProfile(TypedDict):
+    topic: str
+    priority: int           # 1 (highest) to 3 (lowest)
+    sources: list[SourceConfig]
 ```
 
 ---
 
-## Source Type Classification
-
-### Monitored Sources (no LLM, pure code)
-These use a curation list as the quality gate. No query generation.
+## Source Types
 
 | Source Type | Tool | Mechanism |
 |---|---|---|
-| `github_release` | `github_release.py` | GitHub `.atom` RSS via feedparser |
-| `docs` | `docs.py` | httpx + BeautifulSoup + SHA-256 content hashing |
-| `research_paper` | `research_paper.py` | `arxiv` lib + HuggingFace RSS |
+| `github_release` | `fetch_github` | GitHub `.atom` via feedparser, plus README hash diff |
+| `docs` | `fetch_docs` | httpx + BeautifulSoup + SHA-256 hash diff; only changed pages emit items |
+| `research_paper` | `fetch_research_papers` | `arxiv` + HuggingFace RSS, de-duplicated by URL |
+| `news` | `fetch_news` | `ddgs` news search; keywords joined into one OR query |
+| `blog` | `fetch_blogs` | feedparser over profile URLs, falling back to `DEFAULT_FEEDS` |
 
-### Searched Sources (LLM with tools)
-These use LLM for query generation. Source ranking applies here. Dedup handles overlap (no relevancy rubric).
-
-| Source Type | Tool | Mechanism |
-|---|---|---|
-| `news` | `news.py` | NewsCatcherAPI |
-| `blog` | `blog.py` | feedparser + ranked RSS feeds |
+All ingestion is pure code. No LLM is used before summarization.
 
 ---
 
 ## Ingestion Node Contract
 
-Every ingestion node must follow this pattern — no exceptions:
+`IngestionNode` has one method per source type (`ingest_github_releases`, `ingest_docs`, `ingest_research_papers`, `ingest_news`, `ingest_blogs`). Each:
 
-```python
-from datetime import datetime, timedelta, timezone
-from pulse.config import TOP_N_BY_SOURCE
-from pulse.types import RawItem, SourceType
+1. Collects the profiles' source configs for its own `source_type` (`_extract_profiles`)
+2. Calls its tool, then caps with `TOP_N_BY_SOURCE[source_type]`. GitHub also filters to `LOOKBACK_HOURS`; the tools apply a 24h cutoff themselves.
+3. Converts `RawItem` to `IngestedItem` (`source_name`, `source_rank` for news/blog)
+4. On exception, appends `"[ingest_x] <msg>"` to a local `errors` list and continues
+5. Returns `{"raw_items": items, "errors": errors}`
 
-CUTOFF = datetime.now(timezone.utc) - timedelta(hours=24)
-
-def run(state: AgentState) -> dict:
-    items: list[RawItem] = []
-
-    for profile in state["topic_profiles"]:
-        for source in profile["sources"]:
-            if source["source_type"] != "github_release":  # guard per node
-                continue
-            try:
-                fetched = fetch_github_releases(source)             # call tool
-                filtered = [i for i in fetched if i.published_at >= CUTOFF]  # 24hr window
-                capped = filtered[:TOP_N_BY_SOURCE["github_release"]]         # flat cap
-                items.extend(capped)
-            except Exception as e:
-                return {"raw_items": items, "errors": [str(e)]}
-
-    return {"raw_items": items}
-```
-
-**Key rules:**
-- Filter to last 24 hours first, then apply `TOP_N` cap
-- Errors are non-fatal — append to `errors`, return partial `raw_items`
-- No retry logic — pull limit is final
-- Each node only handles its own `source_type`
+No retries. Errors are non-fatal.
 
 ---
 
-## Graph Topology
+## Graph Topology (`src/graph.py`)
 
 ```
-[START]
-   |
-   └──> [ingest_github_releases]  ──┐
-   └──> [ingest_docs]              ──┤
-   └──> [ingest_research_papers]   ──┤──> [dedup_node]
-   └──> [ingest_news]              ──┤         |
-   └──> [ingest_blogs]             ──┘         |
-                                          (fan-out)
-                                    ┌──> [summarize_research_papers]  ──┐
-                                    ├──> [summarize_github_releases]   ──┤
-                                    ├──> [summarize_docs]              ──┤──> [merge_digest_node] ──> [END]
-                                    ├──> [summarize_news]              ──┤
-                                    └──> [summarize_blogs]             ──┘
+START ──> 5 ingest nodes (parallel) ──> dedup ──> 5 summarize nodes (parallel) ──> merge_digest ──> END
 ```
 
-**Fan-out after ingestion:** All 5 ingestion nodes run in parallel (LangGraph parallel edges).
-**Dedup:** Runs once after all ingestion nodes complete, over the fully merged `raw_items`.
-**Summarization:** Fan-out by source type after dedup. Each node filters `deduped_items` by its `source_type`.
-**Merge:** Single node assembles `summaries` into `final_digest`.
+- Dedup: by URL, first-seen order, over merged `raw_items`.
+- Each summarize node filters `deduped_items` by its `source_type`, calls Gemini with the prompt from `src/prompts/templates.py`, and returns a `SummaryItem`. No items means no summary; an LLM failure appends an error.
+- `merge_digest` (no LLM) orders sections: research papers, GitHub releases, docs, news, blogs, then lists errors.
+- Summaries are per source type across all topics, not per topic.
 
 ---
 
-## Summarization Design
+## Config
 
-**Strategy: Batched by source type → merge**
+`src/config/settings.py`:
+- `Settings` (pydantic-settings, reads `.env`): `GEMINI_API_KEY`, `RESEND_API_KEY`, `DIGEST_FROM_EMAIL`, `DIGEST_TO_EMAIL`, `BASE_MODEL`, `INGESTION_MODEL`, `SUMMARIZATION_MODEL`
+- `TOP_N_BY_SOURCE = {github_release: 10, docs: 10, research_paper: 5, news: 20, blog: 10}`
+- `LOOKBACK_HOURS = 24`
 
-Each summarize node:
-1. Filters `deduped_items` to its `source_type`
-2. Sends the batch to the LLM with a source-type-aware prompt
-3. Returns a structured summary dict appended to `summaries`
-
-```python
-# Summary unit written to AgentState["summaries"]
-{
-    "source_type": SourceType,
-    "topic": str,
-    "summary_text": str,
-    "item_count": int,
-}
-```
-
-`merge_digest_node` assembles all summary units into the final structured markdown digest.
+`NEWS_API_KEY` / `SERP_API_KEY` exist in settings but are unused.
 
 ---
 
-## Config (`pulse/config.py`)
-
-```python
-TOP_N_BY_SOURCE = {
-    "github_release": 10,
-    "docs": 10,
-    "research_paper": 5,
-    "news": 20,
-    "blog": 10,
-}
-
-LOOKBACK_HOURS = 24
-```
-
-Tune `TOP_N_BY_SOURCE` values as needed — research papers are capped lower intentionally (high signal, low volume).
-
----
-
-## Persistent State Files
+## Persistent State
 
 | File | Purpose |
 |---|---|
-| `pulse/state/github_readme_hashes.json` | SHA-256 hashes of GitHub READMEs — diff detection |
-| `pulse/state/docs_hashes.json` | SHA-256 hashes of doc pages — diff detection |
+| `pulse/state/github_readme_hashes.json` | SHA-256 of GitHub READMEs — diff detection |
+| `pulse/state/docs_hashes.json` | SHA-256 of doc pages — diff detection |
 
-The `docs` tool writes to these after each run. Only changed content produces a `RawItem`.
-
----
-
-## Active Build Status
-
-| Component | Status |
-|---|---|
-| `github_release` tool | ✅ Built |
-| `docs` tool | ✅ Built |
-| `research_paper` tool | ✅ Built |
-| `news` tool | ✅ Built |
-| `blog` tool | ✅ Built |
-| `pulse/types.py` consolidation | ⏳ Pending (`RawItem` duplicated across tool files) |
-| Ingestion nodes | ⏳ Next |
-| Dedup node | ⏳ Pending |
-| Summarization nodes | ⏳ Pending |
-| Merge digest node | ⏳ Pending |
-| Graph assembly | ⏳ Pending |
+Paths are relative to the working directory, so run from the repo root. They are rewritten on every run and show as modified in git.
 
 ---
+
+## Build Status
+
+All pipeline components are built: tools, ingestion, dedup, summarization, merge, graph, runner, email delivery and the Render cron config.
+
+Remaining:
+- Tests (`tests/unit`, `integration`, `e2e` are empty)
+- Remove the leftover FastAPI scaffold (`src/main.py`, `main.py`, `Dockerfile`, `docker-compose.yml`, `base_service.py`) or point it at `src.runner`
+- Hash stores need persistent storage on Render (ephemeral disk resets them)
 
 ## Open Decisions (do not assume defaults — ask first)
 
-- **Research watchlist definition** — arXiv categories, author IDs, or both?
-- **Summarize node prompt design** — format and depth of per-source summaries
-- **Final digest format** — structured markdown sections per source type (likely), exact schema TBD
-- **`TOP_N_BY_SOURCE` values** — defaults in config are provisional, tune after first run
+- **Research watchlist definition** — currently arXiv categories; author IDs not supported
+- **Summarize prompt design** — current prompts are one paragraph per source type
+- **Final digest schema** — currently markdown sections per source type
+- **`TOP_N_BY_SOURCE` values** — provisional, tune after first runs
 
 ---
 
 ## Key Conventions
 
-- `RawItem` is defined **only** in `pulse/types.py` — import from there everywhere
+- Follow [docs/RULE.md](docs/RULE.md): iterate on existing code, stay in scope, keep files short, comment only the why
 - All datetimes are **UTC-aware** (`datetime.now(timezone.utc)`)
-- Errors are **non-fatal** and accumulate in `AgentState["errors"]`
-- No LLM calls in ingestion nodes — pure data fetching only
-- LLM calls happen only in: searched source query generation (news/blog) and summarization nodes
+- Errors are **non-fatal** and accumulate in `AgentState.errors`
+- No LLM calls in ingestion nodes — LLM calls happen only in summarization nodes
+- Run commands from the repo root with `uv run`

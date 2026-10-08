@@ -5,7 +5,7 @@ import httpx
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
-from src.types import RawItem
+from src.schemas.RawItem import RawItem
 
 
 HASH_STORE_PATH = Path("pulse/state/github_readme_hashes.json")

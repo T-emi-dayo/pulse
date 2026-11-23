@@ -21,7 +21,7 @@ A LangGraph pipeline. Given a set of **topic profiles** (`src/config/profiles.py
 4. Merges into a markdown digest
 5. Emails the digest via Resend (`src/runner.py`)
 
-It runs once daily as a Render cron job. There is **no retry logic** — pull limit is the quality gate.
+Pulse runs daily through GitHub Actions. PulseDev is a separate weekly workflow that consumes saved digests and writes learning picks to a configured private repository.
 
 ---
 
@@ -48,7 +48,10 @@ It runs once daily as a Render cron job. There is **no retry logic** — pull li
 Pulse/
 ├── CLAUDE.md, README.md
 ├── pyproject.toml, uv.lock
-├── render.yaml                       # Cron: 04:00 UTC, `uv run python -m src.runner`
+├── .github/workflows/                # Daily Pulse and weekly PulseDev workflows
+├── templates/learning-log/           # Bootstrap files for the learning repository
+├── data/digests/, data/runs/          # Saved daily digests and run records
+├── src/dashboard/                     # Local read-only viewer
 ├── docs/                             # RULE.md (coding rules), AGENTIC_SYSTEM_TEMPLATE.md (generic template)
 ├── pulse/state/
 │   ├── github_readme_hashes.json     # SHA-256 hashes for README change detection
@@ -56,6 +59,7 @@ Pulse/
 ├── tests/                            # unit/, integration/, e2e/ (empty) + ad-hoc tool scripts
 └── src/
     ├── runner.py                     # Entry point: invoke graph, email digest
+    ├── pulsedev/                      # Weekly picker, profile, status policy, preview CLI
     ├── graph.py                      # Graph assembly, exports `pulse_graph`
     ├── agents/
     │   ├── base_node.py              # BaseNode (holds AIService)
@@ -157,7 +161,7 @@ All ingestion is pure code. No LLM is used before summarization.
 4. On exception, appends `"[ingest_x] <msg>"` to a local `errors` list and continues
 5. Returns `{"raw_items": items, "errors": errors}`
 
-No retries. Errors are non-fatal.
+Source fetches retry up to three times with exponential backoff. Errors remain non-fatal per source.
 
 ---
 
@@ -198,12 +202,14 @@ Paths are relative to the working directory, so run from the repo root. They are
 
 ## Build Status
 
-All pipeline components are built: tools, ingestion, dedup, summarization, merge, graph, runner, email delivery and the Render cron config.
+Pulse includes its daily ingestion, digest, email workflow, and persistent Actions artifacts. PulseDev adds a profile with evidence links, weekly pick selection, status policy, CLI preview, and a local dashboard.
 
 Remaining:
 - Tests (`tests/unit`, `integration`, `e2e` are empty)
 - Remove the leftover FastAPI scaffold (`src/main.py`, `main.py`, `Dockerfile`, `docker-compose.yml`, `base_service.py`) or point it at `src.runner`
-- Hash stores need persistent storage on Render (ephemeral disk resets them)
+- Actions needs repository write permission to commit digest and run artifacts
+- PulseDev needs a configured learning repo and scoped token in Actions settings
+- `LEARNING_LOG_PATH` must point at a local learning-repo checkout for profile previews and dashboard data
 
 ## Open Decisions (do not assume defaults — ask first)
 

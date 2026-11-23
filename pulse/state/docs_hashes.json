@@ -12,8 +12,8 @@
     "last_checked": "2026-04-13T15:04:47.706620+00:00"
   },
   "https://ai.google.dev/gemini-api/docs": {
-    "hash": "529063feb0d48882783919d8f19a33e5fc924edb90a091346ca67921d37a67e3",
-    "last_checked": "2026-05-01T11:20:11.447080+00:00"
+    "hash": "de11e5806dd3fead639bd353a72d8a768ce4d6adf2af13ba92801f09c93d0486",
+    "last_checked": "2026-10-27T14:17:22.450527+00:00"
   },
   "https://googleapis.github.io/python-genai/": {
     "hash": "362e7a8af182f4c329955a3d3611c3f4a22f3215a866ac1f72961f780a6d9c63",
@@ -32,15 +32,15 @@
     "last_checked": "2026-04-13T15:04:47.706620+00:00"
   },
   "https://docs.anthropic.com/en/docs/welcome": {
-    "hash": "849b1c432b00a2555b84ba0e5ff6ce6b3ee8cf898c47b99b4ac702ecb2e8f7a5",
-    "last_checked": "2026-05-01T11:20:11.447080+00:00"
+    "hash": "3a57f127df955b1770ee11cf9266bce4f50ce594c67e0410b3bfe6fa46c8f3b3",
+    "last_checked": "2026-11-03T08:47:31.167618+00:00"
   },
   "https://huggingface.co/docs/transformers/index": {
-    "hash": "6f1c1f19f21f27a22418417d89ec20040667c81e843977e5b69134fa5a7a71e1",
-    "last_checked": "2026-05-01T11:20:22.031463+00:00"
+    "hash": "17efdc5f10ff34ee64abcc1f99de882eff5490bf108c8b7569d0c032162cffd1",
+    "last_checked": "2026-11-03T08:47:46.879887+00:00"
   },
   "https://docs.ray.io/en/latest/index.html": {
     "hash": "bd617d5aa824d09156cf7f5a6d446cdfc8279f8bfcfeccf64f935a529904bf96",
-    "last_checked": "2026-05-01T11:20:22.031463+00:00"
+    "last_checked": "2026-11-03T08:47:46.879887+00:00"
   }
 }

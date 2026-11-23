@@ -1,5 +1,7 @@
 import logging
+import json
 from datetime import datetime, timezone
+from pathlib import Path
 
 import resend
 
@@ -190,6 +192,38 @@ def _build_html(
 
 # ── Public entry point ────────────────────────────────────────────────────────
 
+def persist_digest_copy(
+    digest: str,
+    repo_root: Path | str | None = None,
+    source_items: list[IngestedItem] | None = None,
+) -> Path:
+    """Persist the digest and a compact source catalog beside it."""
+    if not digest or not digest.strip():
+        raise ValueError("No digest content to persist.")
+
+    base_path = Path(repo_root) if repo_root is not None else Path(__file__).resolve().parents[2]
+    output_dir = base_path / "data" / "digests"
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    artifact = output_dir / f"pulse_digest_{timestamp}.md"
+    artifact.write_text(digest, encoding="utf-8")
+    source_catalog = []
+    for item in source_items or []:
+        record = item.model_dump() if isinstance(item, IngestedItem) else dict(item)
+        if not str(record.get("url", "")).startswith(("http://", "https://")):
+            continue
+        source_catalog.append({key: record.get(key) for key in (
+            "title", "url", "source_type", "source_name", "topic", "published_at",
+        )})
+    artifact.with_name(f"{artifact.stem}.sources.json").write_text(
+        json.dumps(source_catalog, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    logger.info(f"Digest copy saved to {artifact}")
+    return artifact
+
+
 def send_digest(result: dict) -> None:
     """
     Sends the daily Pulse digest via Resend.
@@ -212,6 +246,9 @@ def send_digest(result: dict) -> None:
     deduped_items: list[IngestedItem] = result.get("deduped_items", [])
     errors: list[str] = result.get("errors", [])
     plain_text: str = result.get("final_digest", "")
+
+    if plain_text.strip():
+        persist_digest_copy(plain_text, source_items=deduped_items)
 
     resend.api_key = settings.RESEND_API_KEY
 

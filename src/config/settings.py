@@ -23,6 +23,20 @@ class Settings(BaseSettings):
    RESEND_API_KEY: str = ""
    DIGEST_FROM_EMAIL: str = ""   # must be a Resend-verified domain address
    DIGEST_TO_EMAIL: str = ""     # recipient — your personal email
+
+   # PulseDev learning log. Configure these as GitHub Actions secrets/variables.
+   LEARNING_REPO: str = ""       # owner/repository; private repository is supported
+   LEARNING_REPO_TOKEN: str = "" # fine-grained token scoped to the learning repo
+   LEARNING_REPO_BRANCH: str = "main"
+   LEARNING_LOG_PATH: str = ""
+   LEARNING_ANCHOR: str = (
+       "Build durable technical capability through weekly, compounding learning. "
+       "Use AI/ML strengths while exploring useful foundations and adjacent areas."
+   )
+   LEARNING_PROFILE: str = (
+       "Strongest in LLM and agentic systems. Open to backend, deployment, "
+       "mathematics, theory, experiments, and practical personal tools."
+   )
    
    # LLM Configuration
    BASE_MODEL: str = "gemini-2.5-flash"

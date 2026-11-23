@@ -27,8 +27,7 @@ python mcp_test_agent.py \
   --server-url "http://localhost:8000/mcp" \
   --auth-token "your-server-token" \
   --model "openai:gpt-5" \
-  --tools web_search current_time \
-  --prompt "Search for the latest news about MCP and tell me the current UTC time."
+  --tools web_search current_time
 """
 
 from __future__ import annotations
@@ -42,15 +41,11 @@ from src.config.settings import settings
 from langchain.agents import create_agent
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain_google_genai import ChatGoogleGenerativeAI
+from src.prompts.templates import get_prompt_template
 
 DEFAULT_MODEL = "gemini-2.5-flash"
 DEFAULT_TOOLS = ["search_web", "get_current_time"]
-DEFAULT_PROMPT = (
-    "Use the available tools to do two things: "
-    "1) search the web for a very recent AI engineering headline, and "
-    "2) check the current time in UTC. "
-    "Then return a short answer showing both results and mention which tools you used."
-)
+DEFAULT_PROMPT = get_prompt_template("mcp_test_user")
 
 
 def parse_args() -> argparse.Namespace:
@@ -170,11 +165,7 @@ async def main() -> int:
     agent = create_agent(
         model= llm,
         tools=filtered_tools,
-        system_prompt=("""uv 
-                       You are a small MCP server test agent. 
-                       Use the available MCP tools whenever they are relevant. 
-                       Be concise and clearly mention the tools you used."""
-        ),
+        system_prompt=get_prompt_template("mcp_test_system"),
     )
 
     try:

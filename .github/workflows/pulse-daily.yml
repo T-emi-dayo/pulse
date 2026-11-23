@@ -1,0 +1,64 @@
+name: Pulse daily digest
+
+on:
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: pulse-daily
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --frozen
+      - name: Run Pulse
+        id: pulse
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          DIGEST_FROM_EMAIL: ${{ secrets.DIGEST_FROM_EMAIL }}
+          DIGEST_TO_EMAIL: ${{ secrets.DIGEST_TO_EMAIL }}
+        run: uv run python -m src.runner
+      - name: Commit digest, run record, and source state
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/digests data/runs pulse/state
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Pulse: save daily run artifacts"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push
+      - name: Open failure issue if email or workflow failed
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const title = `Pulse daily run failed — ${new Date().toISOString().slice(0, 10)}`;
+            const fs = require('fs');
+            const reportPath = `data/runs/pulse-${new Date().toISOString().slice(0, 10)}.json`;
+            const report = fs.existsSync(reportPath) ? fs.readFileSync(reportPath, 'utf8') : 'No run record was saved.';
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', per_page: 100
+            });
+            if (!existing.data.some(issue => issue.title === title)) {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo, title,
+                body: `Pulse failed or could not deliver its daily digest.\n\nRun report:\n\n\`\`\`json\n${report}\n\`\`\`\n\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
+              });
+            }

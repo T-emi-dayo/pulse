@@ -8,10 +8,19 @@ from src.tools.research_search_tool import fetch_research_papers
 from src.tools.news_tool import fetch_news
 from src.tools.blog_tool import fetch_blogs
 from src.agents.base_node import BaseNode
+from tenacity import Retrying, stop_after_attempt, wait_exponential
 
 
 def _cutoff() -> datetime:
     return datetime.now(timezone.utc) - timedelta(hours=LOOKBACK_HOURS)
+
+
+def _fetch_with_retry(fetcher, *args, **kwargs):
+    return Retrying(
+        stop=stop_after_attempt(3),
+        wait=wait_exponential(multiplier=1, min=1, max=8),
+        reraise=True,
+    )(fetcher, *args, **kwargs)
 
 
 def _extract_profiles(state: AgentState, source_type: str) -> dict[str, dict]:
@@ -39,7 +48,7 @@ class IngestionNode(BaseNode):
 
         for topic, source in profiles.items():
             try:
-                raw = fetch_github(source.get("repos", []))
+                raw = _fetch_with_retry(fetch_github, source.get("repos", []))
                 filtered = [r for r in raw if datetime.fromisoformat(r["published_at"]) >= cutoff]
                 for r in filtered[:cap]:
                     repo = r["url"].split("github.com/")[-1].split("/")[0] if "github.com" in r["url"] else ""
@@ -66,7 +75,7 @@ class IngestionNode(BaseNode):
 
         for topic, source in profiles.items():
             try:
-                raw = fetch_docs(source.get("urls", []))
+                raw = _fetch_with_retry(fetch_docs, source.get("urls", []))
                 for r in raw[:cap]:
                     domain = r["url"].split("/")[2] if r["url"].startswith("http") else ""
                     items.append(IngestedItem(
@@ -93,7 +102,7 @@ class IngestionNode(BaseNode):
         for topic, source in profiles.items():
             try:
                 search_terms = source.get("keywords", []) + source.get("watchlist", [])
-                raw = fetch_research_papers(search_terms, max_results=cap * 2)
+                raw = _fetch_with_retry(fetch_research_papers, search_terms, max_results=cap * 2)
                 for r in raw[:cap]:
                     source_name = "arxiv" if "arxiv.org" in r["url"] else "huggingface"
                     items.append(IngestedItem(
@@ -124,7 +133,7 @@ class IngestionNode(BaseNode):
                     continue
                 # Join keywords into a single OR query; tool caps results at 5
                 query = " OR ".join(keywords)
-                raw = fetch_news(query, max_results=cap)
+                raw = _fetch_with_retry(fetch_news, query, max_results=cap)
                 for rank, r in enumerate(raw, start=1):
                     items.append(IngestedItem(
                         title=r["title"],
@@ -149,7 +158,7 @@ class IngestionNode(BaseNode):
 
         for topic, source in profiles.items():
             try:
-                raw = fetch_blogs(source.get("urls", []), source.get("keywords", []))
+                raw = _fetch_with_retry(fetch_blogs, source.get("urls", []), source.get("keywords", []))
                 for rank, r in enumerate(raw[:cap], start=1):
                     domain = r["url"].split("/")[2] if r["url"].startswith("http") else ""
                     items.append(IngestedItem(

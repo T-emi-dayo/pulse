@@ -11,4 +11,5 @@ wheels/
 .env
 venv/
 tests/
+.agents/
 .claude

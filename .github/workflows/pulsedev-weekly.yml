@@ -1,0 +1,71 @@
+name: PulseDev weekly learning pick
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: pulsedev-weekly
+  cancel-in-progress: false
+
+jobs:
+  pick:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --frozen
+      - name: Propose or review weekly pick
+        id: pulsedev
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          DIGEST_FROM_EMAIL: ${{ secrets.DIGEST_FROM_EMAIL }}
+          DIGEST_TO_EMAIL: ${{ secrets.DIGEST_TO_EMAIL }}
+          LEARNING_REPO: ${{ vars.LEARNING_REPO }}
+          LEARNING_REPO_TOKEN: ${{ secrets.LEARNING_REPO_TOKEN }}
+          LEARNING_REPO_BRANCH: ${{ vars.LEARNING_REPO_BRANCH || 'main' }}
+          LEARNING_ANCHOR: ${{ vars.LEARNING_ANCHOR || 'Build durable technical capability through weekly, compounding learning. Use AI/ML strengths while exploring useful foundations and adjacent areas.' }}
+          LEARNING_PROFILE: ${{ vars.LEARNING_PROFILE || 'Strongest in LLM and agentic systems. Open to backend, deployment, mathematics, theory, experiments, and practical personal tools.' }}
+        run: uv run python -m src.pulsedev.runner
+      - name: Commit PulseDev run record
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/runs
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "PulseDev: save weekly run record"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push
+      - name: Open failure issue
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const isoWeek = new Date().toISOString().slice(0, 10);
+            const title = `PulseDev weekly run failed — ${isoWeek}`;
+            const fs = require('fs');
+            const files = fs.existsSync('data/runs') ? fs.readdirSync('data/runs').filter(name => name.startsWith('pulsedev-') && name.endsWith('.json')) : [];
+            const reportPath = files.map(name => `data/runs/${name}`).sort((a, b) => fs.statSync(b).mtimeMs - fs.statSync(a).mtimeMs)[0];
+            const report = reportPath ? fs.readFileSync(reportPath, 'utf8') : 'No run record was saved.';
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', per_page: 100
+            });
+            if (!existing.data.some(issue => issue.title === title)) {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo, title,
+                body: `PulseDev failed to create or deliver this week's learning pick.\n\nRun report:\n\n\`\`\`json\n${report}\n\`\`\`\n\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
+              });
+            }

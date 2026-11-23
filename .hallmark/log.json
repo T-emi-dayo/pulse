@@ -1,0 +1,31 @@
+[
+  {
+    "date": "2026-11-22",
+    "route": "redesign",
+    "macrostructure": "workbench",
+    "theme": "cobalt",
+    "nav": "N3 side rail adapted as workspace navigation",
+    "footer": "Ft2 inline",
+    "genre": "modern-minimal",
+    "changed_files": [
+      "src/dashboard/index.html",
+      "src/dashboard/static/app.css",
+      "src/dashboard/static/app.js"
+    ]
+  },
+  {
+    "date": "2026-11-22",
+    "route": "redesign",
+    "macrostructure": "calendar-workbench",
+    "theme": "cobalt",
+    "nav": "N3 side rail with calendar destinations",
+    "footer": "Ft2 inline",
+    "genre": "modern-minimal",
+    "changed_files": [
+      "src/dashboard/app.py",
+      "src/dashboard/index.html",
+      "src/dashboard/static/app.css",
+      "src/dashboard/static/app.js"
+    ]
+  }
+]

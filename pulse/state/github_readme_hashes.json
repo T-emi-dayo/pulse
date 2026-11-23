@@ -1,23 +1,23 @@
 {
   "langchain-ai/langgraph": {
-    "hash": "0fae483cb031e9836dc4c427d18d8ba622a09568c87905b145b127c6c3271042",
-    "last_checked": "2026-05-01T11:21:09.244631+00:00"
+    "hash": "3a13e257af1216962d53d72414a7f44ac1fc5cea34d994bdff60ea2a3b045933",
+    "last_checked": "2026-10-27T14:17:55.857713+00:00"
   },
   "langchain-ai/langchain": {
-    "hash": "243305c5cb71f99c19b9f1c4c0d8d9e3742701f013e1164ec1d7c3c68057b4cd",
-    "last_checked": "2026-05-01T11:21:09.244631+00:00"
+    "hash": "9e6d706b38215c6979ef398ba72181b0f9099b8150f317c4c221877456c2dc2e",
+    "last_checked": "2026-10-27T14:17:55.857713+00:00"
   },
   "langchain-ai/langchain-google": {
     "hash": "9d04166f8ad04daa6621640780cd8c981611be3f921845dcdd758180bbdad8aa",
     "last_checked": "2026-04-10T00:11:15.396918+00:00"
   },
   "anthropics/anthropic-sdk-python": {
-    "hash": "6956fcba32230016b045f9b767afeea57a32d516ef61922f9be4996445f745e4",
-    "last_checked": "2026-05-01T11:21:38.238452+00:00"
+    "hash": "b2601659b9837cdb382582e6f292fb859cc6eb31432fc0ac71f26db461e5d588",
+    "last_checked": "2026-10-27T14:18:30.804035+00:00"
   },
   "BerriAI/litellm": {
-    "hash": "d3b7b089a17a2dea4986ad037992fdf08afb54ee246d56e9a0779e9624f8afc4",
-    "last_checked": "2026-05-01T11:21:09.244631+00:00"
+    "hash": "01ef7dec07f73086784fe42e1af86422aaeb9230f5d05626df8f9f6b9562f4bb",
+    "last_checked": "2026-10-27T14:17:55.857713+00:00"
   },
   "googleapis/python-genai": {
     "hash": "676e37a756f7b2164bb9d342a00fd9938c3185f7faa8f48810bacc6d8de846db",
@@ -32,83 +32,83 @@
     "last_checked": "2026-04-10T00:11:29.461879+00:00"
   },
   "openai/openai-python": {
-    "hash": "c23b0eb68c49dbb4336dd1a725a799dc213846c0ff8baa559f9653fd1c471cbd",
-    "last_checked": "2026-05-01T11:21:38.238452+00:00"
+    "hash": "a4d7bc27c600379c57a5ecb6f547edb01355fc226a2223f480a6484a74f48237",
+    "last_checked": "2026-10-27T14:18:30.804035+00:00"
   },
   "microsoft/autogen": {
-    "hash": "5d300aa3304aeecf1a48f68ac76a1af255b8645d666b8aa154790cb30f1dbb94",
-    "last_checked": "2026-05-01T11:21:09.244631+00:00"
+    "hash": "60fa90168565070a61b0f28296ff590bd6853da2477141f5ed0775007c20d7f2",
+    "last_checked": "2026-10-27T14:17:55.857713+00:00"
   },
   "run-llama/llama_index": {
-    "hash": "94b550e4ed1d375619b5ae27e60d06f33ecbdac0ccc8e20ed985f2e2cc9546b6",
-    "last_checked": "2026-05-01T11:21:09.244631+00:00"
+    "hash": "625c49e7dedf84826b350be28d118e7823e669504689105611e91ff709406d1f",
+    "last_checked": "2026-10-27T14:17:55.857713+00:00"
   },
   "crewAIInc/crewAI": {
-    "hash": "b6a352e4d91e2e7aa57c854d61c6a639c633ea08c02e0fbf2230bf890ec52f34",
-    "last_checked": "2026-05-01T11:21:09.244631+00:00"
+    "hash": "b0f39843f93676b12883d5821a34555e2146e62bd2c42dc12733fc41222de013",
+    "last_checked": "2026-10-27T14:17:55.857713+00:00"
   },
   "pydantic/pydantic-ai": {
-    "hash": "dd93fb3619e8e7a5472fbc7c00459314adf47ec33b4bddbfe6c23bc2d339299e",
-    "last_checked": "2026-05-01T11:21:09.244631+00:00"
+    "hash": "1ccfe7e487bd5ff4382711c9e49677d41301427b7aa8913ba0dd924adcc456fc",
+    "last_checked": "2026-10-27T14:17:55.857713+00:00"
   },
   "google-gemini/generative-ai-python": {
     "hash": "f475f67c645504b4345b450c589661335c561cd89c5b0b901c3d6badb432cb10",
-    "last_checked": "2026-05-01T11:21:38.238452+00:00"
+    "last_checked": "2026-10-27T14:18:30.804035+00:00"
   },
   "mistralai/mistral-inference": {
-    "hash": "6e44c23c1aac6354ecf36ccc8e6e608d5c07ca5b98c3d78442fad77c31676b98",
-    "last_checked": "2026-05-01T11:21:38.238452+00:00"
+    "hash": "be9ff9760021cf2de90d422cd76130c4db1b6f0666271de591dd932203551544",
+    "last_checked": "2026-10-27T14:18:30.804035+00:00"
   },
   "meta-llama/llama-stack": {
-    "hash": "97da7bd417b754922c334ac4f7aa693184adfab15b13514300886e50b92585c6",
-    "last_checked": "2026-05-01T11:21:38.238452+00:00"
+    "hash": "a657294669492bcc260023d150244b017ee03404624d3e49214f33b682268281",
+    "last_checked": "2026-10-27T14:18:30.804035+00:00"
   },
   "vllm-project/vllm": {
-    "hash": "de36b442f04502189d1b8ff03c3e799e638eb2943ffe92aefbff5431c8426c92",
-    "last_checked": "2026-05-01T11:23:04.328905+00:00"
+    "hash": "4dc7399323b9660117f8cc1226afb7a81cdbb912dbb4ae74b66d89052417d11c",
+    "last_checked": "2026-10-27T14:19:25.486229+00:00"
   },
   "ggerganov/llama.cpp": {
-    "hash": "8a1669ef62973155774ab679f0ee71905a98e6f830956cb8e56c8ed491378bed",
-    "last_checked": "2026-05-01T11:23:04.328905+00:00"
+    "hash": "dc2d34687c844ecf929d9e9a9c9c78e8023b52abf3b2b3d039600c79016673b6",
+    "last_checked": "2026-10-27T14:19:25.486229+00:00"
   },
   "ollama/ollama": {
-    "hash": "f900b4ece4a4de07e36a192ae642f29395114443f2f1928689fd8c776f1ba2f1",
-    "last_checked": "2026-05-01T11:23:04.328905+00:00"
+    "hash": "9e5a7d406950fdd2742084065ab38a3ea09b5aab5e2f13ef7d64147229ae0d8b",
+    "last_checked": "2026-10-27T14:19:25.486229+00:00"
   },
   "mlflow/mlflow": {
-    "hash": "dd2609d283d3b915973ab5d438be212fde124462252f68df866407acbf67eb65",
-    "last_checked": "2026-05-01T11:23:04.328905+00:00"
+    "hash": "e9b30b8aee35e78fb87bdbbfcf837e8739f596aef5f6def89e735680d7d8b00e",
+    "last_checked": "2026-10-27T14:19:25.486229+00:00"
   },
   "huggingface/transformers": {
-    "hash": "4830f918cb1ae2a27323e9740fa532fa073f67704fd706123a8b7fb25271016d",
-    "last_checked": "2026-05-01T11:23:04.328905+00:00"
+    "hash": "b9f1f01787738eab63e57aea1081b560e90b2880e1555395b3a683198dd474c6",
+    "last_checked": "2026-10-27T14:19:25.486229+00:00"
   },
   "chroma-core/chroma": {
     "hash": "a71f91e5fadfb03772be1f76b0bab7116eea1bfc6cc9bc4fb190ce95dd275264",
-    "last_checked": "2026-05-01T11:23:04.328905+00:00"
+    "last_checked": "2026-10-27T14:19:25.486229+00:00"
   },
   "qdrant/qdrant": {
     "hash": "a8587607603bddf76ae7b4ef843238a95fb3f68ebaab486356043e2829199d11",
-    "last_checked": "2026-05-01T11:23:04.328905+00:00"
+    "last_checked": "2026-10-27T14:19:25.486229+00:00"
   },
   "unslothai/unsloth": {
-    "hash": "28b7eaa9eab7a2c3afca83698ec6531ab2432e064c089cd27e170780e45060ab",
-    "last_checked": "2026-05-01T11:24:14.262289+00:00"
+    "hash": "878500534845dfa63eddd9ef7bd08192a69f870821375d34d9fd148c8ad7884a",
+    "last_checked": "2026-10-27T14:20:17.808225+00:00"
   },
   "huggingface/trl": {
-    "hash": "be05b1ed6d926dbe1cb19e05cb6769059a0fa970c5e06b53b0698ae90fe50407",
-    "last_checked": "2026-05-01T11:24:14.262289+00:00"
+    "hash": "470005b64f0d27f8a59220620693a05faec5e17604be37a330c9e6239feab08c",
+    "last_checked": "2026-10-27T14:20:17.808225+00:00"
   },
   "huggingface/peft": {
-    "hash": "7588dfc18f5ce18aebbae3dc0c30063e20b9329ee7ffca8409a0cf21db1e3d90",
-    "last_checked": "2026-05-01T11:24:14.262289+00:00"
+    "hash": "65958fdf047de668cb2abd1c34dace3082d46680b98ae781b8bd2db38486e13e",
+    "last_checked": "2026-10-27T14:20:17.808225+00:00"
   },
   "microsoft/LoRA": {
     "hash": "ce0b726fedd1198ebd841093b53ff5490672ffb2264479d8be044b5826a791c6",
-    "last_checked": "2026-05-01T11:24:14.262289+00:00"
+    "last_checked": "2026-10-27T14:20:17.808225+00:00"
   },
   "pytorch/torchtune": {
     "hash": "3d5d4969647c1ee61bfa7a9295234ca32ca701442e3b44727cbda58de76f4b95",
-    "last_checked": "2026-05-01T11:24:14.262289+00:00"
+    "last_checked": "2026-10-27T14:20:17.808225+00:00"
   }
 }

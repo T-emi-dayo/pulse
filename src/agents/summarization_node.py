@@ -1,14 +1,37 @@
+import re
+
 from src.schemas.state import AgentState, IngestedItem, SummaryItem
 from src.config.settings import settings
 from src.prompts.templates import get_prompt_template
 from src.agents.base_node import BaseNode
 
 
-def _format_items(items: list[IngestedItem]) -> str:
+_SOURCE_REF = re.compile(r"\[\[(SRC-\d{3,})\]\]")
+
+
+def _source_bank(items: list[IngestedItem]) -> dict[str, IngestedItem]:
+    """Assign deterministic IDs to this run's deduplicated items."""
+    return {f"SRC-{index:03d}": item for index, item in enumerate(items, start=1)}
+
+
+def _format_items(items: list[tuple[str, IngestedItem]]) -> str:
     return "\n\n".join(
-        f"- {i.title}\n  URL: {i.url}\n  {i.excerpt}"
-        for i in items
+        f"- Source ID: [[{source_id}]]\n  Title: {item.title}\n  {item.excerpt}"
+        for source_id, item in items
     )
+
+
+def _resolve_source_refs(text: str, source_bank: dict[str, IngestedItem]) -> str:
+    """Turn valid model citations into links; remove unknown IDs safely."""
+    def replace(match: re.Match) -> str:
+        source_id = match.group(1)
+        item = source_bank.get(source_id)
+        if item is None:
+            return ""
+        label = item.source_name or item.title
+        return f"[{label}]({item.url})"
+
+    return _SOURCE_REF.sub(replace, text)
 
 
 class SummarizationNode(BaseNode):
@@ -18,7 +41,12 @@ class SummarizationNode(BaseNode):
                 "summarize_news", "summarize_blogs"]
 
     def _summarize(self, state: AgentState, source_type: str, prompt_key: str) -> dict:
-        items = [i for i in state.deduped_items if i.source_type == source_type]
+        source_bank = _source_bank(state.deduped_items)
+        items = [
+            (source_id, item)
+            for source_id, item in source_bank.items()
+            if item.source_type == source_type
+        ]
         if not items:
             return {"summaries": []}
 
@@ -35,7 +63,7 @@ class SummarizationNode(BaseNode):
         return {
             "summaries": [SummaryItem(
                 source_type=source_type,
-                summary_text=summary_text,
+                summary_text=_resolve_source_refs(summary_text, source_bank),
                 item_count=len(items),
             )],
         }

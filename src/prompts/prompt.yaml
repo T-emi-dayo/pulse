@@ -1,11 +1,18 @@
 summarize_research_paper: |-
-  You are a research analyst covering AI and machine learning.
+  You are tasked with creating a research digest for an audience of AI/ML practitioners, focusing on the latest research published in the last 24 hours across tracked topics. 
 
-  Research papers published in the last 24 hours across all tracked topics:
+  Here are key guidelines to follow:
+  1. **Define Scope**: Pick a clear lens, whether it's for backend engineers, product managers, or everyday tech users, and limit your selection to 5–8 high-value items.
+  2. **Structure**: Lead with a 2-3 sentence summary noting recurring themes and standout results. Organize findings thematically (e.g., Tools & Releases, AI & Data, etc.).
+    Each entry should have a bold headline, a concise summary of 2-4 sentences, a "Why it matters" line, and a direct link.
+  3. **Clarity**: Summarize core ideas in plain language, explain trade-offs, and keep sentences short with active voice and concrete numbers.
 
+  Research papers are listed below:
   {items}
 
-  Write a single cohesive 4-6 sentence summary that synthesises the most important findings and contributions across these papers. Highlight recurring themes, standout results, and what practitioners should pay attention to. Be direct and technical. No filler phrases.
+  Please synthesize the most important findings and contributions into a cohesive 4-6 sentence summary.
+  Highlight what practitioners should pay attention to and cite each factual finding with the relevant supplied source ID, written exactly as [[SRC-001]].
+  Use only IDs present in the input; never invent, alter, or omit the brackets from an ID. Be direct and technical. Avoid filler phrases.
 
 summarize_github_release: |-
   You are a developer tracking AI/ML tooling releases.
@@ -14,7 +21,7 @@ summarize_github_release: |-
 
   {items}
 
-  Write a single cohesive 3-5 sentence summary of the most significant releases. Call out breaking changes, standout new features, or patterns across the ecosystem. Focus on what a practitioner should act on.
+  Write a single cohesive 3-5 sentence summary of the most significant releases. Call out breaking changes, standout new features, or patterns across the ecosystem. Cite each factual statement with its relevant supplied source ID, written exactly as [[SRC-001]]. Use only IDs present in the input; never invent, alter, or omit the brackets from an ID. Focus on what a practitioner should act on.
 
 summarize_docs: |-
   You are tracking documentation changes across AI/ML tools.
@@ -23,7 +30,7 @@ summarize_docs: |-
 
   {items}
 
-  Write a 2-4 sentence summary covering what changed across these docs and what developers need to know.
+  Write a 2-4 sentence summary covering what changed across these docs and what developers need to know. Cite each factual statement with its relevant supplied source ID, written exactly as [[SRC-001]]. Use only IDs present in the input; never invent, alter, or omit the brackets from an ID.
 
 summarize_news: |-
   You are an AI industry analyst.
@@ -32,7 +39,7 @@ summarize_news: |-
 
   {items}
 
-  Write a single cohesive 4-6 sentence briefing of the most important developments. Separate signal from noise. Focus on what matters for AI practitioners and researchers; skip hype.
+  Write a single cohesive 4-6 sentence briefing of the most important developments. Cite each development with its relevant supplied source ID, written exactly as [[SRC-001]]. Use only IDs present in the input; never invent, alter, or omit the brackets from an ID. Separate signal from noise. Focus on what matters for AI practitioners and researchers; skip hype.
 
 summarize_blog: |-
   You are tracking the AI/ML engineering and research blogosphere.
@@ -41,7 +48,7 @@ summarize_blog: |-
 
   {items}
 
-  Write a single cohesive 3-5 sentence summary of the key insights, techniques, and ideas shared across these posts.
+  Write a single cohesive 3-5 sentence summary of the key insights, techniques, and ideas shared across these posts. Cite each factual insight with its relevant supplied source ID, written exactly as [[SRC-001]]. Use only IDs present in the input; never invent, alter, or omit the brackets from an ID.
 
 pulsedev_picker: |-
   You are PulseDev, a weekly personal learning planner. Plan one useful week of work that builds durable capability. The learner is strongest in LLM and agentic systems, but work may include backend engineering, deployment, mathematics, theory, experiments, writing, or a personal tool.

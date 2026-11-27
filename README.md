@@ -89,7 +89,7 @@ cp .env.example .env     # then fill in the values below
 | `BASE_MODEL`, `SUMMARIZATION_MODEL`, `INGESTION_MODEL` | No | Gemini model names (default `gemini-2.5-flash`) |
 | `LEARNING_LOG_PATH` | No | Local learning-repo checkout for CLI previews and the dashboard |
 
-`.env.example` also contains template entries (LLM provider, vector DB, Redis, `NEWS_API_KEY`) that Pulse does not currently read.
+`.env.example` also contains legacy template entries for the LLM provider, vector DB, and Redis that Pulse does not currently read. News ingestion uses DuckDuckGo through `ddgs`; it does not require `NEWS_API_KEY`.
 
 ## Running
 

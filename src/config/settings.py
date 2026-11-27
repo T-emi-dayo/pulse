@@ -16,7 +16,6 @@ class Settings(BaseSettings):
   
    # API Keys
    GEMINI_API_KEY: str = ""
-   NEWS_API_KEY: str = ""
    SERP_API_KEY: str = ""
 
    # Email (Resend)

@@ -1,0 +1,250 @@
+[
+  {
+    "title": "Intro to Claude - Claude Platform Docs [Updated]",
+    "url": "https://docs.anthropic.com/en/docs/welcome",
+    "source_type": "docs",
+    "source_name": "docs.anthropic.com",
+    "topic": "Foundation Models & Research",
+    "published_at": "2026-11-27T11:58:17.207311+00:00"
+  },
+  {
+    "title": "Transformers · Hugging Face [Updated]",
+    "url": "https://huggingface.co/docs/transformers/index",
+    "source_type": "docs",
+    "source_name": "huggingface.co",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-27T11:58:18.304733+00:00"
+  },
+  {
+    "title": "[pydantic/pydantic-ai] CLAI2 bleeding",
+    "url": "https://github.com/pydantic/pydantic-ai/releases/tag/clai2-bleeding",
+    "source_type": "github_release",
+    "source_name": "pydantic",
+    "topic": "LLM Agents & Frameworks",
+    "published_at": "2026-11-27T11:46:43+00:00"
+  },
+  {
+    "title": "[pydantic/pydantic-ai] v2.76.0 (2026-11-26)",
+    "url": "https://github.com/pydantic/pydantic-ai/releases/tag/v2.76.0",
+    "source_type": "github_release",
+    "source_name": "pydantic",
+    "topic": "LLM Agents & Frameworks",
+    "published_at": "2026-11-26T23:49:06+00:00"
+  },
+  {
+    "title": "[BerriAI/litellm] v1.113.0-dev.1",
+    "url": "https://github.com/BerriAI/litellm/releases/tag/v1.113.0-dev.1",
+    "source_type": "github_release",
+    "source_name": "BerriAI",
+    "topic": "LLM Agents & Frameworks",
+    "published_at": "2026-11-26T21:02:10+00:00"
+  },
+  {
+    "title": "[BerriAI/litellm] 1.108.19 (LTS)",
+    "url": "https://github.com/BerriAI/litellm/releases/tag/v1.108.19",
+    "source_type": "github_release",
+    "source_name": "BerriAI",
+    "topic": "LLM Agents & Frameworks",
+    "published_at": "2026-11-26T21:21:50+00:00"
+  },
+  {
+    "title": "[crewAIInc/crewAI] README Updated",
+    "url": "https://github.com/crewAIInc/crewAI#readme",
+    "source_type": "github_readme",
+    "source_name": "crewAIInc",
+    "topic": "LLM Agents & Frameworks",
+    "published_at": "2026-11-27T11:58:24.501999+00:00"
+  },
+  {
+    "title": "[pydantic/pydantic-ai] README Updated",
+    "url": "https://github.com/pydantic/pydantic-ai#readme",
+    "source_type": "github_readme",
+    "source_name": "pydantic",
+    "topic": "LLM Agents & Frameworks",
+    "published_at": "2026-11-27T11:58:24.501999+00:00"
+  },
+  {
+    "title": "[BerriAI/litellm] README Updated",
+    "url": "https://github.com/BerriAI/litellm#readme",
+    "source_type": "github_readme",
+    "source_name": "BerriAI",
+    "topic": "LLM Agents & Frameworks",
+    "published_at": "2026-11-27T11:58:24.501999+00:00"
+  },
+  {
+    "title": "[meta-llama/llama-stack] v2.0.1-dev",
+    "url": "https://github.com/ogx-ai/ogx/releases/tag/v2.0.1-dev",
+    "source_type": "github_release",
+    "source_name": "ogx-ai",
+    "topic": "Foundation Models & Research",
+    "published_at": "2026-11-26T22:20:47+00:00"
+  },
+  {
+    "title": "[meta-llama/llama-stack] v2.0.0",
+    "url": "https://github.com/ogx-ai/ogx/releases/tag/v2.0.0",
+    "source_type": "github_release",
+    "source_name": "ogx-ai",
+    "topic": "Foundation Models & Research",
+    "published_at": "2026-11-26T23:24:24+00:00"
+  },
+  {
+    "title": "[openai/openai-python] README Updated",
+    "url": "https://github.com/openai/openai-python#readme",
+    "source_type": "github_readme",
+    "source_name": "openai",
+    "topic": "Foundation Models & Research",
+    "published_at": "2026-11-27T11:58:28.467952+00:00"
+  },
+  {
+    "title": "[anthropics/anthropic-sdk-python] README Updated",
+    "url": "https://github.com/anthropics/anthropic-sdk-python#readme",
+    "source_type": "github_readme",
+    "source_name": "anthropics",
+    "topic": "Foundation Models & Research",
+    "published_at": "2026-11-27T11:58:28.467952+00:00"
+  },
+  {
+    "title": "[ggerganov/llama.cpp] b12812: metal : check all fused nodes for concurrency (#33175)",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b12812",
+    "source_type": "github_release",
+    "source_name": "ggml-org",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-27T09:10:50+00:00"
+  },
+  {
+    "title": "[ggerganov/llama.cpp] b12811",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b12811",
+    "source_type": "github_release",
+    "source_name": "ggml-org",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-27T11:19:26+00:00"
+  },
+  {
+    "title": "[ggerganov/llama.cpp] b12810",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b12810",
+    "source_type": "github_release",
+    "source_name": "ggml-org",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-27T08:14:35+00:00"
+  },
+  {
+    "title": "[ggerganov/llama.cpp] b12809",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b12809",
+    "source_type": "github_release",
+    "source_name": "ggml-org",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-27T07:18:51+00:00"
+  },
+  {
+    "title": "[ggerganov/llama.cpp] b12808",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b12808",
+    "source_type": "github_release",
+    "source_name": "ggml-org",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-27T06:06:35+00:00"
+  },
+  {
+    "title": "[ggerganov/llama.cpp] b12807",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b12807",
+    "source_type": "github_release",
+    "source_name": "ggml-org",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-27T05:46:16+00:00"
+  },
+  {
+    "title": "[ollama/ollama] v0.40.19",
+    "url": "https://github.com/ollama/ollama/releases/tag/v0.40.19-rc0",
+    "source_type": "github_release",
+    "source_name": "ollama",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-26T17:52:02+00:00"
+  },
+  {
+    "title": "[mlflow/mlflow] Model Catalog",
+    "url": "https://github.com/mlflow/mlflow/releases/tag/model-catalog%2Flatest",
+    "source_type": "github_release",
+    "source_name": "mlflow",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-27T01:12:31+00:00"
+  },
+  {
+    "title": "[vllm-project/vllm] README Updated",
+    "url": "https://github.com/vllm-project/vllm#readme",
+    "source_type": "github_readme",
+    "source_name": "vllm-project",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-27T11:58:38.509620+00:00"
+  },
+  {
+    "title": "[ggerganov/llama.cpp] README Updated",
+    "url": "https://github.com/ggerganov/llama.cpp#readme",
+    "source_type": "github_readme",
+    "source_name": "ggerganov",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-27T11:58:38.509620+00:00"
+  },
+  {
+    "title": "[unslothai/unsloth] README Updated",
+    "url": "https://github.com/unslothai/unsloth#readme",
+    "source_type": "github_readme",
+    "source_name": "unslothai",
+    "topic": "Open Source Models & Fine-tuning",
+    "published_at": "2026-11-27T11:58:46.283742+00:00"
+  },
+  {
+    "title": "[huggingface/trl] README Updated",
+    "url": "https://github.com/huggingface/trl#readme",
+    "source_type": "github_readme",
+    "source_name": "huggingface",
+    "topic": "Open Source Models & Fine-tuning",
+    "published_at": "2026-11-27T11:58:46.283742+00:00"
+  },
+  {
+    "title": "[huggingface/peft] README Updated",
+    "url": "https://github.com/huggingface/peft#readme",
+    "source_type": "github_readme",
+    "source_name": "huggingface",
+    "topic": "Open Source Models & Fine-tuning",
+    "published_at": "2026-11-27T11:58:46.283742+00:00"
+  },
+  {
+    "title": "Crítica de “Neyen Mapu – El llamado del Lanín”, potente denuncia de resistencia y lucha por el buen vivir",
+    "url": "https://www.msn.com/es-es/noticias/other/crítica-de-neyen-mapu-el-llamado-del-lanín-potente-denuncia-de-resistencia-y-lucha-por-el-buen-vivir/ar-AA2ilVOM?ocid=BingNewsVerp",
+    "source_type": "news",
+    "source_name": "EscribiendoCine on MSN",
+    "topic": "Foundation Models & Research",
+    "published_at": "2026-11-27T11:58:18.427222+00:00"
+  },
+  {
+    "title": "Eskom wants in on the AI revolution, but what’s in it for South Africans?",
+    "url": "https://www.msn.com/en-za/technology/tech-companies/eskom-wants-in-on-the-ai-revolution-but-what-s-in-it-for-south-africans/ar-AA2il18L?ocid=BingNewsVerp",
+    "source_type": "news",
+    "source_name": "Daily Maverick on MSN",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-27T11:58:18.769687+00:00"
+  },
+  {
+    "title": "The poorest big city in America can’t tax its way to economic prosperity | Shackamaxon",
+    "url": "https://www.inquirer.com/columnists/business-tax-city-council-advertising-sheriff-bilal-miracle-lights-20261127.html",
+    "source_type": "news",
+    "source_name": "The Philadelphia Inquirer",
+    "topic": "Open Source Models & Fine-tuning",
+    "published_at": "2026-11-27T11:58:19.240826+00:00"
+  },
+  {
+    "title": "Jack Mintz: Educator, heal thyself. If you don’t, governments will",
+    "url": "https://www.msn.com/en-ca/money/general/jack-mintz-educator-heal-thyself-if-you-don-t-governments-will/ar-AA2imnco?ocid=BingNewsVerp",
+    "source_type": "news",
+    "source_name": "Financial Post on MSN",
+    "topic": "AI Safety & Evaluation",
+    "published_at": "2026-11-27T11:58:19.743563+00:00"
+  },
+  {
+    "title": "Sleeping with a subordinate gets CEOs fired. Except for Jensen Huang",
+    "url": "https://businessmirror.com.ph/2026/11/27/sleeping-with-a-subordinate-gets-ceos-fired-except-for-jensen-huang/",
+    "source_type": "news",
+    "source_name": "BusinessMirror",
+    "topic": "AI Safety & Evaluation",
+    "published_at": "2026-11-27T11:58:19.743585+00:00"
+  }
+]

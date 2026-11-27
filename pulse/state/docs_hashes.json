@@ -32,15 +32,15 @@
     "last_checked": "2026-04-13T15:04:47.706620+00:00"
   },
   "https://docs.anthropic.com/en/docs/welcome": {
-    "hash": "3a57f127df955b1770ee11cf9266bce4f50ce594c67e0410b3bfe6fa46c8f3b3",
-    "last_checked": "2026-11-03T08:47:31.167618+00:00"
+    "hash": "fe004a4fb6c850613eb5050437df8cada2c12f3afd0d5f16f6c59aa161e813be",
+    "last_checked": "2026-11-27T11:58:17.207311+00:00"
   },
   "https://huggingface.co/docs/transformers/index": {
-    "hash": "17efdc5f10ff34ee64abcc1f99de882eff5490bf108c8b7569d0c032162cffd1",
-    "last_checked": "2026-11-03T08:47:46.879887+00:00"
+    "hash": "3fb7edfb888dfa0855a61ff3384d1e9d74ba13c2add47cee00b283b4d017a111",
+    "last_checked": "2026-11-27T11:58:18.304733+00:00"
   },
   "https://docs.ray.io/en/latest/index.html": {
     "hash": "bd617d5aa824d09156cf7f5a6d446cdfc8279f8bfcfeccf64f935a529904bf96",
-    "last_checked": "2026-11-03T08:47:46.879887+00:00"
+    "last_checked": "2026-11-27T11:58:18.304733+00:00"
   }
 }

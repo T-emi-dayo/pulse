@@ -1,11 +1,11 @@
 {
   "langchain-ai/langgraph": {
     "hash": "3a13e257af1216962d53d72414a7f44ac1fc5cea34d994bdff60ea2a3b045933",
-    "last_checked": "2026-11-27T11:58:24.501999+00:00"
+    "last_checked": "2026-11-28T12:50:08.855195+00:00"
   },
   "langchain-ai/langchain": {
     "hash": "9e6d706b38215c6979ef398ba72181b0f9099b8150f317c4c221877456c2dc2e",
-    "last_checked": "2026-11-27T11:58:24.501999+00:00"
+    "last_checked": "2026-11-28T12:50:08.855195+00:00"
   },
   "langchain-ai/langchain-google": {
     "hash": "9d04166f8ad04daa6621640780cd8c981611be3f921845dcdd758180bbdad8aa",
@@ -13,11 +13,11 @@
   },
   "anthropics/anthropic-sdk-python": {
     "hash": "6ff49f4723c1eb500bab6941e2e2d109993580c3ebe318752bd4c88b41f22a1f",
-    "last_checked": "2026-11-27T11:58:28.467952+00:00"
+    "last_checked": "2026-11-28T12:50:12.899842+00:00"
   },
   "BerriAI/litellm": {
     "hash": "298bfd630b9b61eaf7b6ce036bf2b4dcd1cce9493921a6ec78ee8bda25ca841d",
-    "last_checked": "2026-11-27T11:58:24.501999+00:00"
+    "last_checked": "2026-11-28T12:50:08.855195+00:00"
   },
   "googleapis/python-genai": {
     "hash": "676e37a756f7b2164bb9d342a00fd9938c3185f7faa8f48810bacc6d8de846db",
@@ -33,86 +33,86 @@
   },
   "openai/openai-python": {
     "hash": "912003db7914e7bf2218e308cb44c969bacb41ebde9baa7ebf9e144320372f15",
-    "last_checked": "2026-11-27T11:58:28.467952+00:00"
+    "last_checked": "2026-11-28T12:50:12.899842+00:00"
   },
   "microsoft/autogen": {
     "hash": "60fa90168565070a61b0f28296ff590bd6853da2477141f5ed0775007c20d7f2",
-    "last_checked": "2026-11-27T11:58:24.501999+00:00"
+    "last_checked": "2026-11-28T12:50:08.855195+00:00"
   },
   "run-llama/llama_index": {
     "hash": "625c49e7dedf84826b350be28d118e7823e669504689105611e91ff709406d1f",
-    "last_checked": "2026-11-27T11:58:24.501999+00:00"
+    "last_checked": "2026-11-28T12:50:08.855195+00:00"
   },
   "crewAIInc/crewAI": {
     "hash": "3b866b40b1b23058e4fc3cc8ee6194a96bfa9b1d18c82724f8990fd0dd2814cf",
-    "last_checked": "2026-11-27T11:58:24.501999+00:00"
+    "last_checked": "2026-11-28T12:50:08.855195+00:00"
   },
   "pydantic/pydantic-ai": {
     "hash": "e740b028e43d567f81ee14da396fe24c9e53be44a2beb51caacad101087086a8",
-    "last_checked": "2026-11-27T11:58:24.501999+00:00"
+    "last_checked": "2026-11-28T12:50:08.855195+00:00"
   },
   "google-gemini/generative-ai-python": {
     "hash": "f475f67c645504b4345b450c589661335c561cd89c5b0b901c3d6badb432cb10",
-    "last_checked": "2026-11-27T11:58:28.467952+00:00"
+    "last_checked": "2026-11-28T12:50:12.899842+00:00"
   },
   "mistralai/mistral-inference": {
     "hash": "be9ff9760021cf2de90d422cd76130c4db1b6f0666271de591dd932203551544",
-    "last_checked": "2026-11-27T11:58:28.467952+00:00"
+    "last_checked": "2026-11-28T12:50:12.899842+00:00"
   },
   "meta-llama/llama-stack": {
     "hash": "a657294669492bcc260023d150244b017ee03404624d3e49214f33b682268281",
-    "last_checked": "2026-11-27T11:58:28.467952+00:00"
+    "last_checked": "2026-11-28T12:50:12.899842+00:00"
   },
   "vllm-project/vllm": {
     "hash": "ba4998a8520051250ec81c60187203745e6bc0b9c197af6e1b6a73143f5e575e",
-    "last_checked": "2026-11-27T11:58:38.509620+00:00"
+    "last_checked": "2026-11-28T12:50:22.006521+00:00"
   },
   "ggerganov/llama.cpp": {
     "hash": "461b38efc8ce48e8c752e38daba1aaf6169aba4ed81c2651d6e2e031d708f771",
-    "last_checked": "2026-11-27T11:58:38.509620+00:00"
+    "last_checked": "2026-11-28T12:50:22.006521+00:00"
   },
   "ollama/ollama": {
     "hash": "02904cdfc8865b25f7f9946af07e45acb3d257a11ec2730d75c3e4f3b5c793f5",
-    "last_checked": "2026-11-27T11:58:38.509620+00:00"
+    "last_checked": "2026-11-28T12:50:22.006521+00:00"
   },
   "mlflow/mlflow": {
     "hash": "5dc3beb3c6e9acf515b4898a24fbd1bf3d0dc7d6bfa5439df7f9164bc42d0193",
-    "last_checked": "2026-11-27T11:58:38.509620+00:00"
+    "last_checked": "2026-11-28T12:50:22.006521+00:00"
   },
   "huggingface/transformers": {
     "hash": "79d656bac5a82cca071d525fa18e807ecd0f1211e4c9fca539eda18848999e81",
-    "last_checked": "2026-11-27T11:58:38.509620+00:00"
+    "last_checked": "2026-11-28T12:50:22.006521+00:00"
   },
   "chroma-core/chroma": {
     "hash": "a71f91e5fadfb03772be1f76b0bab7116eea1bfc6cc9bc4fb190ce95dd275264",
-    "last_checked": "2026-11-27T11:58:38.509620+00:00"
+    "last_checked": "2026-11-28T12:50:22.006521+00:00"
   },
   "qdrant/qdrant": {
     "hash": "a8587607603bddf76ae7b4ef843238a95fb3f68ebaab486356043e2829199d11",
-    "last_checked": "2026-11-27T11:58:38.509620+00:00"
+    "last_checked": "2026-11-28T12:50:22.006521+00:00"
   },
   "unslothai/unsloth": {
     "hash": "e5b826eb41ade17a77b35f7db28f0bb4448772df86d03ef87741adba3daaa2f0",
-    "last_checked": "2026-11-27T11:58:46.283742+00:00"
+    "last_checked": "2026-11-28T12:50:29.035365+00:00"
   },
   "huggingface/trl": {
     "hash": "9a788536f5ed9a21646040cc999a00aa79674f716744d1c799d0b20ac65d2301",
-    "last_checked": "2026-11-27T11:58:46.283742+00:00"
+    "last_checked": "2026-11-28T12:50:29.035365+00:00"
   },
   "huggingface/peft": {
     "hash": "bded606f05727a975a03625a7b0b561be8b048ffacafd78874e80242d981f2d2",
-    "last_checked": "2026-11-27T11:58:46.283742+00:00"
+    "last_checked": "2026-11-28T12:50:29.035365+00:00"
   },
   "microsoft/LoRA": {
     "hash": "ce0b726fedd1198ebd841093b53ff5490672ffb2264479d8be044b5826a791c6",
-    "last_checked": "2026-11-27T11:58:46.283742+00:00"
+    "last_checked": "2026-11-28T12:50:29.035365+00:00"
   },
   "pytorch/torchtune": {
     "hash": "3d5d4969647c1ee61bfa7a9295234ca32ca701442e3b44727cbda58de76f4b95",
-    "last_checked": "2026-11-27T11:58:46.283742+00:00"
+    "last_checked": "2026-11-28T12:50:29.035365+00:00"
   },
   "ray-project/ray": {
     "hash": "27d1e25d12e737128e04b73efb0f55c1514011a6c6a137ee9f0b692db403034e",
-    "last_checked": "2026-11-27T11:58:38.509620+00:00"
+    "last_checked": "2026-11-28T12:50:22.006521+00:00"
   }
 }

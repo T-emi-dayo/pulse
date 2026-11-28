@@ -33,14 +33,14 @@
   },
   "https://docs.anthropic.com/en/docs/welcome": {
     "hash": "fe004a4fb6c850613eb5050437df8cada2c12f3afd0d5f16f6c59aa161e813be",
-    "last_checked": "2026-11-27T11:58:17.207311+00:00"
+    "last_checked": "2026-11-28T12:50:01.514867+00:00"
   },
   "https://huggingface.co/docs/transformers/index": {
-    "hash": "3fb7edfb888dfa0855a61ff3384d1e9d74ba13c2add47cee00b283b4d017a111",
-    "last_checked": "2026-11-27T11:58:18.304733+00:00"
+    "hash": "e496b3a5d3830af434f1a346f0d1ff7a10c2e3b6867789c81f2d7504f00d73c7",
+    "last_checked": "2026-11-28T12:50:02.730184+00:00"
   },
   "https://docs.ray.io/en/latest/index.html": {
     "hash": "bd617d5aa824d09156cf7f5a6d446cdfc8279f8bfcfeccf64f935a529904bf96",
-    "last_checked": "2026-11-27T11:58:18.304733+00:00"
+    "last_checked": "2026-11-28T12:50:02.730184+00:00"
   }
 }

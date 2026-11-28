@@ -1,0 +1,130 @@
+[
+  {
+    "title": "Speculative Decoding Makes Tool Calls Faster. Agents Need a Cache.",
+    "url": "https://towardsdatascience.com/speculative-decoding-makes-tool-calls-faster-agents-need-a-cache/",
+    "source_type": "blog",
+    "source_name": "towardsdatascience.com",
+    "topic": "LLM Agents & Frameworks",
+    "published_at": "2026-11-27T14:00:00+00:00"
+  },
+  {
+    "title": "Transformers · Hugging Face [Updated]",
+    "url": "https://huggingface.co/docs/transformers/index",
+    "source_type": "docs",
+    "source_name": "huggingface.co",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-28T12:50:02.730184+00:00"
+  },
+  {
+    "title": "[pydantic/pydantic-ai] CLAI2 bleeding",
+    "url": "https://github.com/pydantic/pydantic-ai/releases/tag/clai2-bleeding",
+    "source_type": "github_release",
+    "source_name": "pydantic",
+    "topic": "LLM Agents & Frameworks",
+    "published_at": "2026-11-28T05:30:23+00:00"
+  },
+  {
+    "title": "[pydantic/pydantic-ai] v2.77.0 (2026-11-27)",
+    "url": "https://github.com/pydantic/pydantic-ai/releases/tag/v2.77.0",
+    "source_type": "github_release",
+    "source_name": "pydantic",
+    "topic": "LLM Agents & Frameworks",
+    "published_at": "2026-11-27T23:32:31+00:00"
+  },
+  {
+    "title": "[BerriAI/litellm] 1.108.20 (LTS)",
+    "url": "https://github.com/BerriAI/litellm/releases/tag/v1.108.20",
+    "source_type": "github_release",
+    "source_name": "BerriAI",
+    "topic": "LLM Agents & Frameworks",
+    "published_at": "2026-11-27T22:00:19+00:00"
+  },
+  {
+    "title": "[ggerganov/llama.cpp] b12830: chat : Allow K2 Horizon tool call during thought (#32993)",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b12830",
+    "source_type": "github_release",
+    "source_name": "ggml-org",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-28T11:22:49+00:00"
+  },
+  {
+    "title": "[ggerganov/llama.cpp] b12828",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b12828",
+    "source_type": "github_release",
+    "source_name": "ggml-org",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-28T12:06:57+00:00"
+  },
+  {
+    "title": "[ggerganov/llama.cpp] b12827",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b12827",
+    "source_type": "github_release",
+    "source_name": "ggml-org",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-28T11:35:12+00:00"
+  },
+  {
+    "title": "[ggerganov/llama.cpp] b12826",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b12826",
+    "source_type": "github_release",
+    "source_name": "ggml-org",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-27T19:28:53+00:00"
+  },
+  {
+    "title": "[ggerganov/llama.cpp] b12823",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b12823",
+    "source_type": "github_release",
+    "source_name": "ggml-org",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-28T01:28:25+00:00"
+  },
+  {
+    "title": "[ggerganov/llama.cpp] b12822",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b12822",
+    "source_type": "github_release",
+    "source_name": "ggml-org",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-28T01:11:52+00:00"
+  },
+  {
+    "title": "[ggerganov/llama.cpp] b12821",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b12821",
+    "source_type": "github_release",
+    "source_name": "ggml-org",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-28T00:57:48+00:00"
+  },
+  {
+    "title": "[ggerganov/llama.cpp] b12820",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b12820",
+    "source_type": "github_release",
+    "source_name": "ggml-org",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-28T00:42:56+00:00"
+  },
+  {
+    "title": "[ggerganov/llama.cpp] b12819",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b12819",
+    "source_type": "github_release",
+    "source_name": "ggml-org",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-28T00:24:38+00:00"
+  },
+  {
+    "title": "[ggerganov/llama.cpp] b12818",
+    "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b12818",
+    "source_type": "github_release",
+    "source_name": "ggml-org",
+    "topic": "MLOps & AI Infrastructure",
+    "published_at": "2026-11-27T20:47:42+00:00"
+  },
+  {
+    "title": "Una ceutí que vivió la crisis de julio explica por qué la llama invasión: yo soy antirracista y recibo amenazas por hablar",
+    "url": "https://www.msn.com/es-es/noticias/otras/una-ceutí-que-vivió-la-crisis-de-julio-explica-por-qué-la-llama-invasión-yo-soy-antirracista-y-recibo-amenazas-por-hablar/ar-AA2ipL4L?ocid=BingNewsVerp",
+    "source_type": "news",
+    "source_name": "La Razón on MSN",
+    "topic": "Open Source Models & Fine-tuning",
+    "published_at": "2026-11-28T12:50:04.030032+00:00"
+  }
+]
